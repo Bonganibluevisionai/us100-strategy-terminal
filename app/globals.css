@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  /* Cold graphite-blue terminal. The only saturated colors on the page are
+     functional: green = bullish/buy, red = bearish/sell, amber = demo/caution. */
+  --color-bg: #0b0f17;
+  --color-surface: #111726;
+  --color-raised: #182136;
+  --color-edge: #1e2638;
+  --color-ink: #e6eaf2;
+  --color-muted: #8b94a7;
+  --color-faint: #5a6377;
+  --color-up: #2ebd85;
+  --color-down: #f6465d;
+  --color-caution: #e8a33d;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "Cascadia Mono", monospace;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background:
+    radial-gradient(1100px 500px at 75% -10%, rgba(46, 189, 133, 0.05), transparent 60%),
+    var(--color-bg);
+}
+
+::selection {
+  background: rgba(46, 189, 133, 0.25);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-muted);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
