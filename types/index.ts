@@ -80,6 +80,8 @@ export interface AnalysisResponse {
   symbol: string;
   timeframe: Timeframe;
   source: DataSource;
+  /** True when the deployment requires the access-code login. */
+  gated: boolean;
   providerNote: string | null;
   candles: Candle[];
   overlays: {

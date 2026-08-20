@@ -39,6 +39,7 @@ export async function GET(request: Request) {
       symbol,
       timeframe,
       source,
+      gated: Boolean(process.env.DASHBOARD_ACCESS_CODE),
       providerNote: note,
       candles,
       overlays: {

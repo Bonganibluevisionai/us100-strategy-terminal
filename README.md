@@ -51,6 +51,16 @@ MARKET_DATA_SYMBOL=QQQ
 - The dashboard always shows the symbol the candles actually describe: `US100` in demo mode, or your configured live symbol (e.g. `QQQ · NASDAQ-100 ETF · US100 proxy`) so proxy data is never mislabelled.
 - The key is only ever read inside the Next.js API route (`app/api/analysis/route.ts`), so it is never exposed to the browser.
 
+### Optional login gate
+
+Set `DASHBOARD_ACCESS_CODE` to require an access code before anyone can view
+the terminal. Visitors get a login screen at `/login`; a correct code issues
+an HTTP-only session cookie (derived by hashing the access code) that lasts
+7 days, and every page and API route is enforced by the Next.js middleware. Leave the variable empty (the
+default) to keep the dashboard public. Changing the code invalidates all
+existing sessions. This is a simple shared-code gate for portfolio use — not
+a substitute for real user accounts.
+
 ### Production build
 
 ```bash

@@ -22,6 +22,11 @@ export default function Dashboard() {
     setLoading(true);
     try {
       const res = await fetch(`/api/analysis?timeframe=${tf}`, { cache: "no-store" });
+      if (res.status === 401) {
+        // Session expired or the access code was rotated — back to the gate.
+        window.location.href = "/login";
+        return;
+      }
       const body = await res.json().catch(() => null);
       if (!res.ok) {
         throw new Error(body?.error ?? `Request failed with status ${res.status}`);
@@ -53,6 +58,7 @@ export default function Dashboard() {
         source={data?.source ?? null}
         generatedAt={data?.generatedAt ?? null}
         refreshing={loading && data !== null}
+        gated={data?.gated ?? false}
       />
 
       <main className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-6 sm:px-6 sm:py-8">
